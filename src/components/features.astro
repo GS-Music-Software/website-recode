@@ -1,0 +1,43 @@
+---
+import { FolderOpen, Wallpaper, SlidersHorizontal, Mic2, Search } from "@lucide/astro";
+
+const items = [
+  { icon: "folder-open", title: "Local Library", desc: "Scan your entire music collection. Albums, artists, and tracks organized automatically." },
+  { icon: "discord", title: "Discord Integration", desc: "Show what you're listening to with fully customizable Rich Presence." },
+  { icon: "wallpaper", title: "Immersive Visuals", desc: "Album art colors bleed into animated backgrounds that react to your music." },
+  { icon: "sliders-horizontal", title: "Audio Enhancements", desc: "Shape your sound with a 10-band parametric equalizer and built-in presets." },
+  { icon: "mic-2", title: "Synced Lyrics", desc: "Time-synced lyrics that scroll in real-time with a beautiful fullscreen view." },
+  { icon: "search", title: "Discover & Download", desc: "Search millions of tracks and download directly to your library in one click." },
+];
+
+const icon_map: Record<string, any> = { "folder-open": FolderOpen, "discord": null, "wallpaper": Wallpaper, "sliders-horizontal": SlidersHorizontal, "mic-2": Mic2, "search": Search };
+---
+
+<section id="features" class="mx-auto max-w-[1300px] px-4 py-20 sm:px-8 lg:px-16 lg:py-28">
+  <div class="mb-12 text-center lg:mb-16">
+    <p class="mb-3 text-sm font-semibold text-primary">Features</p>
+    <h2 class="mb-4 text-3xl font-semibold tracking-tight lg:text-4xl">Everything built in</h2>
+    <p class="mx-auto max-w-[520px] text-lg text-muted">
+      No plugins, no extensions. Every feature ships with the app.
+    </p>
+  </div>
+
+  <div class="grid grid-cols-1 gap-y-12 md:grid-cols-2 lg:grid-cols-3 lg:gap-8 lg:gap-y-16">
+    {items.map(({ icon, title, desc }) => {
+      const Icon = icon_map[icon as keyof typeof icon_map];
+      return (
+        <div class="group flex flex-col items-center text-center">
+          <div class="mb-5 flex h-12 w-12 items-center justify-center rounded-md border border-border text-faint transition-colors duration-200 group-hover:text-primary">
+            {icon === "discord" ? (
+              <svg class="h-5 w-5 lg:h-6 lg:w-6" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z"/></svg>
+            ) : (
+              <Icon class="h-5 w-5 lg:h-6 lg:w-6" />
+            )}
+          </div>
+          <h3 class="mb-2 text-lg font-semibold lg:text-xl">{title}</h3>
+          <p class="max-w-[380px] text-muted">{desc}</p>
+        </div>
+      );
+    })}
+  </div>
+</section>
